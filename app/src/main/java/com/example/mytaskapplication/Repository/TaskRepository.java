@@ -5,12 +5,10 @@ import com.example.mytaskapplication.model.Task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.UUID;
 
 public class TaskRepository {
-    private String mString;
-    private int mInt;
-    private static final int TASK_SIZE = 100;
     private static TaskRepository sInstance;
 
     public static TaskRepository getInstance(String name, int taskNumber) {
@@ -29,7 +27,7 @@ public class TaskRepository {
         for (int i = 0; i < taskNumber ; i++) {
             Task task = new Task();
             task.setTitle(name);
-            task.setStates(States.Doing);
+            task.setStates(randomStates());
 
             mTasks.add(task);
         }
@@ -60,5 +58,10 @@ public class TaskRepository {
         }
 
         return 0;
+    }
+
+    private States randomStates(){
+        int pick = new Random().nextInt(States.values().length);
+        return States.values()[pick];
     }
 }

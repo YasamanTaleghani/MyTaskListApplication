@@ -1,6 +1,9 @@
 package com.example.mytaskapplication.controller.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.ListFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,14 +13,9 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.mytaskapplication.R;
+import com.example.mytaskapplication.controller.fragment.FirstPageFragment;
 
 public class FirstPageActivity extends AppCompatActivity {
-
-    public static final String EXTRA_USERNAME = "com.example.mytaskapplication.ExtraUsername";
-    public static final String EXTRA_TASK_NUMBER = "com.example.mytaskapplication.ExtraTasknumber";
-    private EditText mUsername;
-    private EditText mTasks;
-    private Button mButtonSubmit;
 
     public FirstPageActivity() {
     }
@@ -27,34 +25,15 @@ public class FirstPageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        findView();
-        setListeners();
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.firstPage_container);
 
-    }
-
-    private void findView(){
-        mUsername = findViewById(R.id.username);
-        mTasks = findViewById(R.id.task);
-        mButtonSubmit = findViewById(R.id.submit);
-    }
-
-    private void setListeners(){
-        mButtonSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                if (mUsername==null || mTasks==null){
-                    Toast.makeText(FirstPageActivity.this, "Fields cannot be empty.",
-                            Toast.LENGTH_SHORT).show();
-                }else{
-                    Intent intent = new Intent(FirstPageActivity.this ,
-                            ListActivity.class);
-                    intent.putExtra(EXTRA_USERNAME,mUsername.getText().toString().trim());
-                    intent.putExtra(EXTRA_TASK_NUMBER,mTasks.getText().toString().trim());
-                    startActivity(intent);
-                }
-
-            }
-        });
+        if (fragment == null) {
+            FirstPageFragment firstPageFragment = FirstPageFragment.newInstance();
+            fragmentManager
+                    .beginTransaction()
+                    .add(R.id.firstPage_container, firstPageFragment).
+                    commit();
+        }
     }
 }

@@ -16,7 +16,6 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
-
         FragmentManager fragmentManager = getSupportFragmentManager();
         Fragment fragment = fragmentManager.findFragmentById(R.id.list_container);
 
@@ -26,7 +25,6 @@ public class ListActivity extends AppCompatActivity {
                     .beginTransaction()
                     .add(R.id.list_container, listFragment).
                     commit();
-
         }
     }
 }

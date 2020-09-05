@@ -19,12 +19,10 @@ import android.widget.Toast;
 import com.example.mytaskapplication.R;
 import com.example.mytaskapplication.Repository.TaskRepository;
 import com.example.mytaskapplication.model.Task;
-
 import java.util.List;
-
 import static android.widget.Toast.*;
-import static com.example.mytaskapplication.controller.activity.FirstPageActivity.EXTRA_TASK_NUMBER;
-import static com.example.mytaskapplication.controller.activity.FirstPageActivity.EXTRA_USERNAME;
+import static com.example.mytaskapplication.controller.fragment.FirstPageFragment.EXTRA_TASK_NUMBER;
+import static com.example.mytaskapplication.controller.fragment.FirstPageFragment.EXTRA_USERNAME;
 
 
 public class ListFragment extends Fragment {
@@ -48,16 +46,16 @@ public class ListFragment extends Fragment {
             tasksNumber = Integer.parseInt(savedInstanceState.getString(EXTRA_TASK_NUMBER));
             Toast.makeText(getActivity(), "Hi", LENGTH_SHORT).show();
         }
-
+        Toast.makeText(getActivity(), "Hi", LENGTH_SHORT).show();
         mRepository = TaskRepository.getInstance(username,tasksNumber);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        View view =  inflater.inflate(R.layout.fragment_list, container, false);
         Toast.makeText(getActivity(), "Hi", LENGTH_SHORT).show();
+        View view =  inflater.inflate(R.layout.fragment_list, container, false);
+
         findViews(view);
         initViews();
 
@@ -76,12 +74,15 @@ public class ListFragment extends Fragment {
     private void updateUI() {
         List<Task> tasks = mRepository.getTasks();
 
-        if (mTaskAdapter == null) {
+        /*if (mTaskAdapter == null) {
             mTaskAdapter = new TaskAdapter(tasks);
             mRecyclerView.setAdapter(mTaskAdapter);
         } else {
             mTaskAdapter.notifyDataSetChanged();
-        }
+        }*/
+
+        TaskAdapter taskAdapter = new TaskAdapter(mRepository.getTasks());
+        mRecyclerView.setAdapter(taskAdapter);
     }
 
     private class TaskHolder extends RecyclerView.ViewHolder {
