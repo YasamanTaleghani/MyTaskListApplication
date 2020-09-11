@@ -17,14 +17,13 @@ public class ListActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
-        Fragment fragment = fragmentManager.findFragmentById(R.id.list_container);
+        Fragment fragment = fragmentManager.findFragmentById(R.id.firstPage_container);
 
         if (fragment == null) {
             ListFragment listFragment = new ListFragment();
-            fragmentManager
-                    .beginTransaction()
-                    .add(R.id.list_container, listFragment).
-                    commit();
+            fragmentManager.beginTransaction().add(R.id.list_container , listFragment).commit();
+
         }
     }
+
 }
