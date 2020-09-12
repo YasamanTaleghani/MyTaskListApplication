@@ -3,6 +3,7 @@ package com.example.mytaskapplication.controller.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -20,6 +21,8 @@ public class FirstPageFragment extends Fragment {
 
     public static final String EXTRA_USERNAME = "com.example.mytaskapplication.ExtraUsername";
     public static final String EXTRA_TASK_NUMBER = "com.example.mytaskapplication.ExtraTasknumber";
+    public static final String EXTRA_U = "Extra_u";
+    public static final String EXTRA_T = "Extra_t";
     private EditText mUsername;
     private EditText mTasks;
     private Button mButtonSubmit;
@@ -77,4 +80,5 @@ public class FirstPageFragment extends Fragment {
             }
         });
     }
+
 }

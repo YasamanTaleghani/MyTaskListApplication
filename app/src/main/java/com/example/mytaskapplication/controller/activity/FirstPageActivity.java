@@ -15,7 +15,12 @@ import android.widget.Toast;
 import com.example.mytaskapplication.R;
 import com.example.mytaskapplication.controller.fragment.FirstPageFragment;
 
+import static com.example.mytaskapplication.controller.fragment.FirstPageFragment.EXTRA_TASK_NUMBER;
+import static com.example.mytaskapplication.controller.fragment.FirstPageFragment.EXTRA_USERNAME;
+
 public class FirstPageActivity extends AppCompatActivity {
+
+
 
     public FirstPageActivity() {
     }
